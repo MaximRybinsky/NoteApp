@@ -1,41 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-namespace NoteApp
+﻿namespace NoteApp
 {
     /// <summary>
     /// Категория заметки
     /// </summary>
-    public enum CategoryOfNote
+    public enum NoteCategory
     {
         /// <summary>
-        /// Категория "Работа"
+        /// Работа
         /// </summary>
         Work,
         /// <summary>
-        /// Категория "Дом"
+        /// Дом
         /// </summary>
         Home,
         /// <summary>
-        /// Категория "Здоровье и спорт"
+        /// Здоровье и спорт
         /// </summary>
         SportAndHealth,
         /// <summary>
-        /// Категория "Люди"
+        /// Люди
         /// </summary>
         People,
         /// <summary>
-        /// Категория "Документы"
+        /// Документы
         /// </summary>
         Docs,
         /// <summary>
-        /// Категория "Деньги"
+        /// Деньги
         /// </summary>
         Finance,
         /// <summary>
-        /// Категория "Другое"
+        /// Другое
         /// </summary>
         Other
     }

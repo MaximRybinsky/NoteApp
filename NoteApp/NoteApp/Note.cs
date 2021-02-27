@@ -1,8 +1,10 @@
 ﻿using System;
 
-
 namespace NoteApp
 {
+    /// <summary>
+    /// Заметка
+    /// </summary>
     public class Note : ICloneable
     {
         /// <summary>
@@ -11,7 +13,19 @@ namespace NoteApp
         private string _name;
 
         /// <summary>
-        /// Свойства имени заметки
+        /// Категория заметки
+        /// </summary>
+        private NoteCategory _category;
+
+        /// <summary>
+        /// Текст заметки
+        /// </summary>
+        private string _text;
+
+        /// <summary>
+        /// Принимает и выдает значение имени заметки.
+        /// Имя не больше 50 символов.
+        /// Устанавливает время последнего изменения
         /// </summary>
         public string Name
         {
@@ -23,71 +37,72 @@ namespace NoteApp
             {
                 if (value.Length > 50)
                 {
-                    throw new ArgumentException("Длина строки больше 50 символов");
+                    throw new ArgumentException
+                        ("Слишком большое имя заметки: больше 50 символов");
                 }
                 else
                 {
                     {
                         _name = value;
+                        Modified = DateTime.Now;
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Категория заметки
+        /// Принимает и выдает значение категории заметки
+        /// Устанавливает время последнего изменения
         /// </summary>
-        private CategoryOfNote _category;
-
-        /// <summary>
-        /// Свойства категории заметки
-        /// </summary>
-        public CategoryOfNote Category
+        public NoteCategory Category 
         {
-            get;
-            set;
+            get
+            {
+                return _category;
+            }
+            set
+            {
+                _category = value;
+                Modified = DateTime.Now;
+            }
         }
 
         /// <summary>
-        /// Текст заметки
-        /// </summary>
-        private string _text;
-
-        /// <summary>
-        /// Свойства текста заметки
+        /// Принимает и выдает значение текста заметки
+        /// Устанавливает время последнего изменения
         /// </summary>
         public string Text
         {
-            get;
-            set;
+            get
+            {
+                return _text;
+            }
+            set
+            {
+                _text = value;
+                Modified = DateTime.Now;
+            }
         }
 
         /// <summary>
-        /// Время создания заметки
+        /// Принимает и выдает значение времени создания заметки
         /// </summary>
-        private DateTime _timeOfCreation;
+        public DateTime Created { get; private set; }
 
         /// <summary>
-        /// Свойства времени создания заметки
+        /// Принимает и выдает значение времени последнего изменения заметки
         /// </summary>
-        public DateTime TimeOfCreation
+        public DateTime Modified { get; private set; }
+
+        /// <summary>
+        /// Начальный конструктор
+        /// </summary>
+        public Note()
         {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Время последнего изменения заметки
-        /// </summary>
-        private DateTime _timeOfLastChange;
-
-        /// <summary>
-        /// Свойства времени последнего изменения заметки
-        /// </summary>
-        public DateTime TimeOfLastChange
-        {
-            get;
-            private set;
+            Name = "Без названия";
+            Category = NoteCategory.Other;
+            Created = DateTime.Now;
+            Modified = Created;
         }
 
         /// <summary>
@@ -96,16 +111,6 @@ namespace NoteApp
         public object Clone()
         {
             return this.MemberwiseClone();
-        }
-
-        /// <summary>
-        /// Начальный конструктор
-        /// </summary>
-        public Note()
-        {
-            _name = "Без названия";
-            //Присвоение имени работает, а вот время почему-то игнорируется
-            _timeOfLastChange = DateTime.Now;
         }
     }
 }
