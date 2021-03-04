@@ -7,22 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NoteApp;
 
 namespace NoteAppUI
 {
-    public partial class MainForm : Form
+    public partial class EditForm : Form
     {
-        public MainForm()
+        public EditForm()
         {
             InitializeComponent();
-
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutForm aboutForm = new AboutForm();
-            aboutForm.Show();
         }
     }
 }

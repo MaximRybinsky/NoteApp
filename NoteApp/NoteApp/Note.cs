@@ -10,7 +10,7 @@ namespace NoteApp
         /// <summary>
         /// Имя заметки
         /// </summary>
-        private string _name;
+        private string _title;
 
         /// <summary>
         /// Категория заметки
@@ -27,11 +27,11 @@ namespace NoteApp
         /// Имя не больше 50 символов.
         /// Устанавливает время последнего изменения
         /// </summary>
-        public string Name
+        public string Title
         {
             get
             {
-                return _name;
+                return _title;
             }
             set
             {
@@ -43,7 +43,7 @@ namespace NoteApp
                 else
                 {
                     {
-                        _name = value;
+                        _title = value;
                         Modified = DateTime.Now;
                     }
                 }
@@ -99,7 +99,7 @@ namespace NoteApp
         /// </summary>
         public Note()
         {
-            Name = "Без названия";
+            Title = "Без названия";
             Category = NoteCategory.Other;
             Created = DateTime.Now;
             Modified = Created;
