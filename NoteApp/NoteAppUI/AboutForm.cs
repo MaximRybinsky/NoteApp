@@ -15,6 +15,7 @@ namespace NoteAppUI
         public AboutForm()
         {
             InitializeComponent();
+            ShowIcon = false;
         }
 
         private void EmaleLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

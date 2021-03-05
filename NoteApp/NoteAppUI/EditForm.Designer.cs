@@ -31,7 +31,7 @@ namespace NoteAppUI
         {
             this.OkButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.MainTextBox = new System.Windows.Forms.TextBox();
             this.TitleTextBox = new System.Windows.Forms.TextBox();
             this.CreatedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.ModifiedDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -50,6 +50,7 @@ namespace NoteAppUI
             this.OkButton.TabIndex = 0;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // CancelButton
             // 
@@ -59,24 +60,28 @@ namespace NoteAppUI
             this.CancelButton.TabIndex = 1;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // textBox1
+            // MainTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 91);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(416, 280);
-            this.textBox1.TabIndex = 2;
+            this.MainTextBox.Location = new System.Drawing.Point(12, 91);
+            this.MainTextBox.Multiline = true;
+            this.MainTextBox.Name = "MainTextBox";
+            this.MainTextBox.Size = new System.Drawing.Size(416, 280);
+            this.MainTextBox.TabIndex = 2;
+            this.MainTextBox.TextChanged += new System.EventHandler(this.MainTextBox_TextChanged);
             // 
             // TitleTextBox
             // 
             this.TitleTextBox.Location = new System.Drawing.Point(59, 12);
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(100, 20);
+            this.TitleTextBox.Size = new System.Drawing.Size(369, 20);
             this.TitleTextBox.TabIndex = 3;
+            this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // CreatedDateTimePicker
             // 
+            this.CreatedDateTimePicker.Enabled = false;
             this.CreatedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.CreatedDateTimePicker.Location = new System.Drawing.Point(59, 65);
             this.CreatedDateTimePicker.Name = "CreatedDateTimePicker";
@@ -85,6 +90,7 @@ namespace NoteAppUI
             // 
             // ModifiedDateTimePicker
             // 
+            this.ModifiedDateTimePicker.Enabled = false;
             this.ModifiedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ModifiedDateTimePicker.Location = new System.Drawing.Point(219, 65);
             this.ModifiedDateTimePicker.Name = "ModifiedDateTimePicker";
@@ -98,6 +104,7 @@ namespace NoteAppUI
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(121, 21);
             this.CategoryComboBox.TabIndex = 6;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // TitleLabel
             // 
@@ -148,11 +155,12 @@ namespace NoteAppUI
             this.Controls.Add(this.ModifiedDateTimePicker);
             this.Controls.Add(this.CreatedDateTimePicker);
             this.Controls.Add(this.TitleTextBox);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.MainTextBox);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OkButton);
             this.Name = "EditForm";
             this.Text = "EditForm";
+            this.Load += new System.EventHandler(this.EditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,7 +170,7 @@ namespace NoteAppUI
 
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox MainTextBox;
         private System.Windows.Forms.TextBox TitleTextBox;
         private System.Windows.Forms.DateTimePicker CreatedDateTimePicker;
         private System.Windows.Forms.DateTimePicker ModifiedDateTimePicker;

@@ -40,12 +40,15 @@ namespace NoteApp
                     throw new ArgumentException
                         ("Слишком большое имя заметки: больше 50 символов");
                 }
+                else if (value == "")
+                {
+                    _title = "Без названия"; 
+                    Modified = DateTime.Now;
+                }
                 else
                 {
-                    {
-                        _title = value;
-                        Modified = DateTime.Now;
-                    }
+                    _title = value;
+                    Modified = DateTime.Now;
                 }
             }
         }
@@ -62,7 +65,15 @@ namespace NoteApp
             }
             set
             {
-                _category = value;
+                if (value == null)
+                {
+                    _category = NoteCategory.Other;
+                }
+                else
+                {
+                    _category = value;
+                }
+                
                 Modified = DateTime.Now;
             }
         }

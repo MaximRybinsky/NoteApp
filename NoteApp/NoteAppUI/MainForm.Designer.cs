@@ -132,6 +132,7 @@ namespace NoteAppUI
             this.NoteListBox.Name = "NoteListBox";
             this.NoteListBox.Size = new System.Drawing.Size(257, 355);
             this.NoteListBox.TabIndex = 1;
+            this.NoteListBox.SelectedIndexChanged += new System.EventHandler(this.NoteListBox_SelectedIndexChanged);
             // 
             // ShowCategoryLable
             // 
@@ -183,9 +184,9 @@ namespace NoteAppUI
             this.NoteTitleLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NoteTitleLable.Location = new System.Drawing.Point(3, 3);
             this.NoteTitleLable.Name = "NoteTitleLable";
-            this.NoteTitleLable.Size = new System.Drawing.Size(145, 24);
+            this.NoteTitleLable.Size = new System.Drawing.Size(100, 24);
             this.NoteTitleLable.TabIndex = 3;
-            this.NoteTitleLable.Text = "NoteTitleLable";
+            this.NoteTitleLable.Text = "Note Title";
             // 
             // ModifiedDateTimePicker
             // 
@@ -207,36 +208,40 @@ namespace NoteAppUI
             // 
             // TextBox
             // 
-            this.TextBox.Enabled = false;
             this.TextBox.Location = new System.Drawing.Point(3, 88);
             this.TextBox.Multiline = true;
             this.TextBox.Name = "TextBox";
+            this.TextBox.ReadOnly = true;
             this.TextBox.Size = new System.Drawing.Size(524, 335);
             this.TextBox.TabIndex = 0;
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // addNoteToolStripMenuItem
             // 
             this.addNoteToolStripMenuItem.Name = "addNoteToolStripMenuItem";
-            this.addNoteToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.addNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addNoteToolStripMenuItem.Text = "Add Note";
+            this.addNoteToolStripMenuItem.Click += new System.EventHandler(this.addNoteToolStripMenuItem_Click);
             // 
             // editNoteToolStripMenuItem
             // 
             this.editNoteToolStripMenuItem.Name = "editNoteToolStripMenuItem";
-            this.editNoteToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.editNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editNoteToolStripMenuItem.Text = "Edit Note";
+            this.editNoteToolStripMenuItem.Click += new System.EventHandler(this.editNoteToolStripMenuItem_Click);
             // 
             // removeNoteToolStripMenuItem
             // 
             this.removeNoteToolStripMenuItem.Name = "removeNoteToolStripMenuItem";
-            this.removeNoteToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.removeNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeNoteToolStripMenuItem.Text = "Remove Note";
+            this.removeNoteToolStripMenuItem.Click += new System.EventHandler(this.removeNoteToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -256,6 +261,7 @@ namespace NoteAppUI
             this.DeleteNoteButton.Size = new System.Drawing.Size(20, 20);
             this.DeleteNoteButton.TabIndex = 1;
             this.DeleteNoteButton.UseVisualStyleBackColor = true;
+            this.DeleteNoteButton.Click += new System.EventHandler(this.DeleteNoteButton_Click);
             // 
             // AddNoteButton
             // 
@@ -268,6 +274,7 @@ namespace NoteAppUI
             this.AddNoteButton.Size = new System.Drawing.Size(20, 20);
             this.AddNoteButton.TabIndex = 0;
             this.AddNoteButton.UseVisualStyleBackColor = true;
+            this.AddNoteButton.Click += new System.EventHandler(this.AddNoteButton_Click);
             // 
             // EditNoteButton
             // 
@@ -280,6 +287,7 @@ namespace NoteAppUI
             this.EditNoteButton.Size = new System.Drawing.Size(20, 20);
             this.EditNoteButton.TabIndex = 0;
             this.EditNoteButton.UseVisualStyleBackColor = true;
+            this.EditNoteButton.Click += new System.EventHandler(this.EditNoteButton_Click);
             // 
             // MainForm
             // 
