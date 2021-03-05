@@ -10,12 +10,12 @@ namespace NoteApp
         /// <summary>
         /// Имя заметки
         /// </summary>
-        private string _title;
+        private string _title = "Без названия";
 
         /// <summary>
         /// Категория заметки
         /// </summary>
-        private NoteCategory _category;
+        private NoteCategory _category = NoteCategory.Other;
 
         /// <summary>
         /// Текст заметки
@@ -23,7 +23,7 @@ namespace NoteApp
         private string _text;
 
         /// <summary>
-        /// Принимает и выдает значение имени заметки.
+        /// Возвращает и задаёт значение имени заметки.
         /// Имя не больше 50 символов.
         /// Устанавливает время последнего изменения
         /// </summary>
@@ -54,7 +54,7 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Принимает и выдает значение категории заметки
+        /// Возвращает и задаёт значение категории заметки
         /// Устанавливает время последнего изменения
         /// </summary>
         public NoteCategory Category 
@@ -65,21 +65,13 @@ namespace NoteApp
             }
             set
             {
-                if (value == null)
-                {
-                    _category = NoteCategory.Other;
-                }
-                else
-                {
-                    _category = value;
-                }
-                
+                _category = value;   
                 Modified = DateTime.Now;
             }
         }
 
         /// <summary>
-        /// Принимает и выдает значение текста заметки
+        /// Возвращает и задаёт значение текста заметки
         /// Устанавливает время последнего изменения
         /// </summary>
         public string Text
@@ -96,25 +88,14 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Принимает и выдает значение времени создания заметки
+        /// Возвращает значение времени создания заметки
         /// </summary>
-        public DateTime Created { get; private set; }
+        public DateTime Created { get; private set; } = DateTime.Now;
 
         /// <summary>
-        /// Принимает и выдает значение времени последнего изменения заметки
+        /// Возвращает значение времени последнего изменения заметки
         /// </summary>
-        public DateTime Modified { get; private set; }
-
-        /// <summary>
-        /// Начальный конструктор
-        /// </summary>
-        public Note()
-        {
-            Title = "Без названия";
-            Category = NoteCategory.Other;
-            Created = DateTime.Now;
-            Modified = Created;
-        }
+        public DateTime Modified { get; private set; } = DateTime.Now;
 
         /// <summary>
         /// Реализация интерфейса IClonable

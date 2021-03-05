@@ -13,13 +13,20 @@ namespace NoteApp
         /// Путь по умолчанию
         /// </summary>
         public static string defaultPath = Environment.GetFolderPath
-            (Environment.SpecialFolder.ApplicationData) + "\\NoteApp.notes";
+            (Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\NoteApp.notes";
 
         /// <summary>
         /// Метод для сохранения данных
         /// </summary>
         public static void SaveToFile(Project project, string fileName)
         {
+            //Если папка отсутствует - создать
+            var folder = Path.GetDirectoryName(fileName);
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            //Сериализовать
             var serializer = new JsonSerializer();
             using (var sw = new StreamWriter(fileName))
             using (var writer = new JsonTextWriter(sw))
@@ -34,16 +41,15 @@ namespace NoteApp
         public static Project LoadFromFile(string fileName)
         {
             Project readProject = null;
-            var serializer = new JsonSerializer();
-            using (var sr = new StreamReader(fileName))
-            using (var reader = new JsonTextReader(sr))
-            {
-                if (File.Exists(fileName))
-                {
-                    readProject = (Project)serializer.Deserialize<Project>(reader);
-                }
-                return readProject;
+            //Загрузить если найден. Иначе - вернуть пустой проект
+            if (File.Exists(fileName)) 
+            { 
+                var serializer = new JsonSerializer();
+                using (var sr = new StreamReader(fileName))
+                using (var reader = new JsonTextReader(sr))
+                readProject = (Project)serializer.Deserialize<Project>(reader);  
             }
+            return readProject;
         }
     }
 }

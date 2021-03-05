@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NoteApp;
 
 namespace NoteAppUI
 {
     /// <summary>
     /// Пользовательский интерфейс для создания и редактирования заметок
     /// </summary>
-    public partial class EditForm : Form
+    public partial class NoteForm : Form
     {
         /// <summary>
         /// Поле для временного хранения переданных данных
@@ -31,31 +32,58 @@ namespace NoteAppUI
             set
             {
                 _note = value;
+                UpdateNote();
             }
         }
 
-        public EditForm()
+        /// <summary>
+        /// Начальный конструктор
+        /// </summary>
+        public NoteForm()
         {
             InitializeComponent();
-            ShowIcon = false;
-            
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Docs);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Finance);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Home);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Other);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.People);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.SportAndHealth);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Work);
+
+            var categories = Enum.GetValues(typeof(NoteCategory)).Cast<object>().ToArray();
+            CategoryComboBox.Items.AddRange(categories);
         }
 
+        /// <summary>
+        /// Задаёт значения при загрузке
+        /// </summary>
+        private void UpdateNote()
+        {
+            TitleTextBox.Text = _note.Title;
+            CategoryComboBox.SelectedItem = _note.Category;
+            CreatedDateTimePicker.Value = _note.Created;
+            ModifiedDateTimePicker.Value = _note.Modified;
+            MainTextBox.Text = _note.Text;
+        }
+
+        //
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            _note.Title = TitleTextBox.Text;
+            try
+            {
+                _note.Title = TitleTextBox.Text;
+                TitleTextBox.BackColor = Color.White;
+                OkButton.Enabled = true;
+
+                //Не уверен насчет реализации
+                TitleToolTip.Active = false;
+            }
+            catch
+            {
+                TitleTextBox.BackColor = Color.LightSalmon;
+                OkButton.Enabled = false;
+
+                //Не работает почему-то
+                TitleToolTip.SetToolTip(TitleTextBox, "Too many characters");
+            }
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _note.Category = (NoteApp.NoteCategory)CategoryComboBox.SelectedItem;
+            _note.Category = (NoteCategory)CategoryComboBox.SelectedItem;
         }
 
         private void MainTextBox_TextChanged(object sender, EventArgs e)
@@ -75,13 +103,9 @@ namespace NoteAppUI
             this.Close();
         }
 
-        private void EditForm_Load(object sender, EventArgs e)
+        private void NoteForm_Load(object sender, EventArgs e)
         {
-            TitleTextBox.Text = _note.Title;
-            CategoryComboBox.SelectedItem = _note.Category;
-            CreatedDateTimePicker.Value = _note.Created;
-            ModifiedDateTimePicker.Value = _note.Modified;
-            MainTextBox.Text = _note.Text;
+
         }
     }
 }

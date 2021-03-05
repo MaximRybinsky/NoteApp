@@ -1,7 +1,7 @@
 ﻿
 namespace NoteAppUI
 {
-    partial class EditForm
+    partial class NoteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@ namespace NoteAppUI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.OkButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.MainTextBox = new System.Windows.Forms.TextBox();
@@ -38,8 +39,9 @@ namespace NoteAppUI
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.TitleLabel = new System.Windows.Forms.Label();
             this.CategoryLabel = new System.Windows.Forms.Label();
-            this.ModifiedLable = new System.Windows.Forms.Label();
+            this.ModifiedLabel = new System.Windows.Forms.Label();
             this.CreatedLlabel = new System.Windows.Forms.Label();
+            this.TitleToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // OkButton
@@ -124,14 +126,14 @@ namespace NoteAppUI
             this.CategoryLabel.TabIndex = 8;
             this.CategoryLabel.Text = "Categiry:";
             // 
-            // ModifiedLable
+            // ModifiedLabel
             // 
-            this.ModifiedLable.AutoSize = true;
-            this.ModifiedLable.Location = new System.Drawing.Point(166, 71);
-            this.ModifiedLable.Name = "ModifiedLable";
-            this.ModifiedLable.Size = new System.Drawing.Size(50, 13);
-            this.ModifiedLable.TabIndex = 9;
-            this.ModifiedLable.Text = "Modified:";
+            this.ModifiedLabel.AutoSize = true;
+            this.ModifiedLabel.Location = new System.Drawing.Point(166, 71);
+            this.ModifiedLabel.Name = "ModifiedLabel";
+            this.ModifiedLabel.Size = new System.Drawing.Size(50, 13);
+            this.ModifiedLabel.TabIndex = 9;
+            this.ModifiedLabel.Text = "Modified:";
             // 
             // CreatedLlabel
             // 
@@ -142,13 +144,17 @@ namespace NoteAppUI
             this.CreatedLlabel.TabIndex = 10;
             this.CreatedLlabel.Text = "Created:";
             // 
-            // EditForm
+            // TitleToolTip
+            // 
+            this.TitleToolTip.ShowAlways = true;
+            // 
+            // NoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 414);
             this.Controls.Add(this.CreatedLlabel);
-            this.Controls.Add(this.ModifiedLable);
+            this.Controls.Add(this.ModifiedLabel);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.TitleLabel);
             this.Controls.Add(this.CategoryComboBox);
@@ -158,9 +164,10 @@ namespace NoteAppUI
             this.Controls.Add(this.MainTextBox);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OkButton);
-            this.Name = "EditForm";
+            this.Name = "NoteForm";
+            this.ShowIcon = false;
             this.Text = "EditForm";
-            this.Load += new System.EventHandler(this.EditForm_Load);
+            this.Load += new System.EventHandler(this.NoteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,7 +184,8 @@ namespace NoteAppUI
         private System.Windows.Forms.ComboBox CategoryComboBox;
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Label CategoryLabel;
-        private System.Windows.Forms.Label ModifiedLable;
+        private System.Windows.Forms.Label ModifiedLabel;
         private System.Windows.Forms.Label CreatedLlabel;
+        private System.Windows.Forms.ToolTip TitleToolTip;
     }
 }

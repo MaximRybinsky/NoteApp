@@ -130,6 +130,7 @@ namespace NoteAppUI
             this.Controls.Add(this.VersionLable);
             this.Controls.Add(this.NoteAppLable);
             this.Name = "AboutForm";
+            this.ShowIcon = false;
             this.Text = "About";
             this.ResumeLayout(false);
             this.PerformLayout();

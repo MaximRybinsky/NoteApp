@@ -11,81 +11,81 @@ using NoteApp;
 
 namespace NoteAppUI
 {
+    /// <summary>
+    /// Пользовательский интерфейс для выбора и чтения заметок
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Экземпляр проекта для сериализации и десериализации
+        /// </summary>
+        private NoteApp.Project _project = new Project();
 
-        private NoteApp.Project _project;
-
+        /// <summary>
+        /// Начальный конструктор
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            ShowIcon = false;
-            CategoryComboBox.Items.Add("All");
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Docs);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Finance);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Home);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Other);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.People);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.SportAndHealth);
-            CategoryComboBox.Items.Add(NoteApp.NoteCategory.Work);
 
-            _project = new Project();
+            var categories = Enum.GetValues(typeof(NoteCategory)).Cast<object>().ToArray();
+            CategoryComboBox.Items.AddRange(categories);
             
-            try
-            {
-                _project = NoteApp.ProjectManager.LoadFromFile(NoteApp.ProjectManager.defaultPath);
+            _project = NoteApp.ProjectManager.LoadFromFile(NoteApp.ProjectManager.defaultPath);
 
-                for (int i = 0; i < _project.NotesList.Count; i++)
-                {
-                    NoteListBox.Items.Add(_project.NotesList[i].Title);
-                }
-            }
-            catch
+            if(_project != null)
             {
-                MessageBox.Show("Не удалось загрузить файл");
+                for (int i = 0; i < _project.Notes.Count; i++)
+                {
+                    NoteListBox.Items.Add(_project.Notes[i].Title);
+                }
             }
         }
 
+        /// <summary>
+        /// Вызывает окно создания заметки
+        /// </summary>
         private void AddNote()
         {
-            var _note = new Note();
-            var editForm = new EditForm();
-            editForm.Note = _note;
+            var note = new Note();
+            var editForm = new NoteForm();
+            editForm.Note = note;
             editForm.ShowDialog();
             if(editForm.DialogResult == DialogResult.OK)
             {
-                _note = editForm.Note;
-                _project.NotesList.Add(_note);
-                NoteListBox.Items.Add(_note.Title);
+                note = editForm.Note;
+                _project.Notes.Add(note);
+                NoteListBox.Items.Add(note.Title);
                 NoteListBox.SelectedIndex = NoteListBox.Items.Count - 1;
 
                 NoteApp.ProjectManager.SaveToFile(_project, NoteApp.ProjectManager.defaultPath);
             }
         }
 
+        /// <summary>
+        /// Вызывает окно редактирования заметки
+        /// </summary>
         private void EditNote()
         {
             var selected = NoteListBox.SelectedIndex;
 
             if (selected == -1)
             {
-                MessageBox.Show("Выберите заметку для редактирования", "Сообщение",
-                    MessageBoxButtons.OK);
                 return;
             }
             else
             {
-                var _note = _project.NotesList[selected];
-                var editForm = new EditForm();
-                editForm.Note = _note;
+                var note = _project.Notes[selected];
+                var editForm = new NoteForm();
+                editForm.Note = note;
                 editForm.ShowDialog(); 
                 if (editForm.DialogResult == DialogResult.OK)
                 {
-                    _note = editForm.Note;
-                    _project.NotesList.RemoveAt(selected);
+                    note = editForm.Note;
+                    _project.Notes.RemoveAt(selected);
                     NoteListBox.Items.RemoveAt(selected);
-                    _project.NotesList.Insert(selected, _note);
-                    NoteListBox.Items.Insert(selected, _note.Title);
+                    _project.Notes.Insert(selected, note);
+                    NoteListBox.Items.Insert(selected, note.Title);
                     NoteListBox.SelectedIndex = selected;
 
                     NoteApp.ProjectManager.SaveToFile(_project, NoteApp.ProjectManager.defaultPath);
@@ -93,23 +93,24 @@ namespace NoteAppUI
             }
         }
 
+        /// <summary>
+        /// Удаляет заметку при подтверждении
+        /// </summary>
         private void RemoveNote()
         {
             var selected = NoteListBox.SelectedIndex;
 
             if (selected == -1)
             {
-                MessageBox.Show("Выберите заметку для удаления", "Сообщение",
-                    MessageBoxButtons.OK);
                 return;
             }
             else
             {
                 DialogResult dialogResult = MessageBox.Show
-                    ("Удалить запись?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    ("Delete note?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _project.NotesList.RemoveAt(selected);
+                    _project.Notes.RemoveAt(selected);
                     NoteListBox.Items.RemoveAt(selected);
                     NoteListBox.SelectedIndex = -1;
 
@@ -125,14 +126,15 @@ namespace NoteAppUI
             {
                 return;
             }
-            TextBox.Text = _project.NotesList[selected].Text;
-            NoteTitleLable.Text = _project.NotesList[selected].Title;
-            NoteCategoryLable.Text = "Category: " + _project.NotesList[selected].Category.ToString();
+
+            TextBox.Text = _project.Notes[selected].Text;
+            NoteTitleLabel.Text = _project.Notes[selected].Title;
+            NoteCategoryLabel.Text = _project.Notes[selected].Category.ToString();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutForm aboutForm = new AboutForm();
+            var aboutForm = new AboutForm();
             aboutForm.Show();
         }
 
