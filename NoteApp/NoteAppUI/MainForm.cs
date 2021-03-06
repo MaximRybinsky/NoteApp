@@ -19,7 +19,7 @@ namespace NoteAppUI
         /// <summary>
         /// Экземпляр проекта для сериализации и десериализации
         /// </summary>
-        private NoteApp.Project _project = new Project();
+        private Project _project = new Project();
 
         /// <summary>
         /// Начальный конструктор
@@ -31,14 +31,16 @@ namespace NoteAppUI
             var categories = Enum.GetValues(typeof(NoteCategory)).Cast<object>().ToArray();
             CategoryComboBox.Items.AddRange(categories);
             
-            _project = NoteApp.ProjectManager.LoadFromFile(NoteApp.ProjectManager.defaultPath);
+            _project = ProjectManager.LoadFromFile(ProjectManager.defaultPath);
 
-            if(_project != null)
+            //Загружает поля в список заметок на экране
+            for (int i = 0; i < _project.Notes.Count; i++)
             {
-                for (int i = 0; i < _project.Notes.Count; i++)
-                {
-                    NoteListBox.Items.Add(_project.Notes[i].Title);
-                }
+                NoteListBox.Items.Add(_project.Notes[i].Title);
+            }
+            if(NoteListBox.Items.Count > 0)
+            {
+                NoteListBox.SelectedIndex = NoteListBox.TopIndex;
             }
         }
 
@@ -58,7 +60,7 @@ namespace NoteAppUI
                 NoteListBox.Items.Add(note.Title);
                 NoteListBox.SelectedIndex = NoteListBox.Items.Count - 1;
 
-                NoteApp.ProjectManager.SaveToFile(_project, NoteApp.ProjectManager.defaultPath);
+                ProjectManager.SaveToFile(_project, ProjectManager.defaultPath);
             }
         }
 
@@ -88,7 +90,7 @@ namespace NoteAppUI
                     NoteListBox.Items.Insert(selected, note.Title);
                     NoteListBox.SelectedIndex = selected;
 
-                    NoteApp.ProjectManager.SaveToFile(_project, NoteApp.ProjectManager.defaultPath);
+                    ProjectManager.SaveToFile(_project, ProjectManager.defaultPath);
                 }
             }
         }
@@ -114,7 +116,7 @@ namespace NoteAppUI
                     NoteListBox.Items.RemoveAt(selected);
                     NoteListBox.SelectedIndex = -1;
 
-                    NoteApp.ProjectManager.SaveToFile(_project, NoteApp.ProjectManager.defaultPath);
+                    ProjectManager.SaveToFile(_project, ProjectManager.defaultPath);
                 }
             }
         }

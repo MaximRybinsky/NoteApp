@@ -45,6 +45,7 @@ namespace NoteAppUI
             this.NoteListBox = new System.Windows.Forms.ListBox();
             this.ShowCategoryLabel = new System.Windows.Forms.Label();
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.CategoryLabel = new System.Windows.Forms.Label();
             this.NoteCategoryLabel = new System.Windows.Forms.Label();
             this.ModifiedLabel = new System.Windows.Forms.Label();
             this.CreatedLabel = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@ namespace NoteAppUI
             this.ModifiedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.CreatedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.TextBox = new System.Windows.Forms.TextBox();
-            this.CategoryLabel = new System.Windows.Forms.Label();
             this.MenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -135,7 +135,9 @@ namespace NoteAppUI
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -147,6 +149,7 @@ namespace NoteAppUI
             this.splitContainer1.Panel1.Controls.Add(this.NoteListBox);
             this.splitContainer1.Panel1.Controls.Add(this.ShowCategoryLabel);
             this.splitContainer1.Panel1.Controls.Add(this.CategoryComboBox);
+            this.splitContainer1.Panel1MinSize = 160;
             // 
             // splitContainer1.Panel2
             // 
@@ -158,12 +161,14 @@ namespace NoteAppUI
             this.splitContainer1.Panel2.Controls.Add(this.ModifiedDateTimePicker);
             this.splitContainer1.Panel2.Controls.Add(this.CreatedDateTimePicker);
             this.splitContainer1.Panel2.Controls.Add(this.TextBox);
+            this.splitContainer1.Panel2MinSize = 320;
             this.splitContainer1.Size = new System.Drawing.Size(800, 426);
             this.splitContainer1.SplitterDistance = 266;
             this.splitContainer1.TabIndex = 1;
             // 
             // DeleteNoteButton
             // 
+            this.DeleteNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DeleteNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeleteNoteButton.FlatAppearance.BorderSize = 0;
             this.DeleteNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -177,6 +182,7 @@ namespace NoteAppUI
             // 
             // AddNoteButton
             // 
+            this.AddNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddNoteButton.FlatAppearance.BorderSize = 0;
             this.AddNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -190,6 +196,7 @@ namespace NoteAppUI
             // 
             // EditNoteButton
             // 
+            this.EditNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.EditNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EditNoteButton.FlatAppearance.BorderSize = 0;
             this.EditNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -203,6 +210,9 @@ namespace NoteAppUI
             // 
             // NoteListBox
             // 
+            this.NoteListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NoteListBox.FormattingEnabled = true;
             this.NoteListBox.Location = new System.Drawing.Point(6, 27);
             this.NoteListBox.Name = "NoteListBox";
@@ -221,11 +231,22 @@ namespace NoteAppUI
             // 
             // CategoryComboBox
             // 
+            this.CategoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(90, 0);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(173, 21);
             this.CategoryComboBox.TabIndex = 0;
+            // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Location = new System.Drawing.Point(4, 35);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(52, 13);
+            this.CategoryLabel.TabIndex = 7;
+            this.CategoryLabel.Text = "Category:";
             // 
             // NoteCategoryLabel
             // 
@@ -284,21 +305,15 @@ namespace NoteAppUI
             // 
             // TextBox
             // 
+            this.TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox.Location = new System.Drawing.Point(3, 88);
             this.TextBox.Multiline = true;
             this.TextBox.Name = "TextBox";
             this.TextBox.ReadOnly = true;
             this.TextBox.Size = new System.Drawing.Size(524, 335);
             this.TextBox.TabIndex = 0;
-            // 
-            // CategoryLabel
-            // 
-            this.CategoryLabel.AutoSize = true;
-            this.CategoryLabel.Location = new System.Drawing.Point(4, 35);
-            this.CategoryLabel.Name = "CategoryLabel";
-            this.CategoryLabel.Size = new System.Drawing.Size(52, 13);
-            this.CategoryLabel.TabIndex = 7;
-            this.CategoryLabel.Text = "Category:";
             // 
             // MainForm
             // 
@@ -307,6 +322,7 @@ namespace NoteAppUI
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.MenuStrip);
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "MainForm";
             this.Text = "NoteApp";
             this.MenuStrip.ResumeLayout(false);

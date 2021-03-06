@@ -40,16 +40,22 @@ namespace NoteApp
         /// </summary>
         public static Project LoadFromFile(string fileName)
         {
-            Project readProject = null;
+            Project readProject = new Project();
             //Загрузить если найден. Иначе - вернуть пустой проект
             if (File.Exists(fileName)) 
             { 
                 var serializer = new JsonSerializer();
                 using (var sr = new StreamReader(fileName))
                 using (var reader = new JsonTextReader(sr))
-                readProject = (Project)serializer.Deserialize<Project>(reader);  
+                readProject = (Project)serializer.Deserialize<Project>(reader);
+                
+                //Если файл поврежден, возвращает пустой проект
+                if(readProject != null)
+                {
+                    return readProject;
+                }
             }
-            return readProject;
+            return new Project();
         }
     }
 }

@@ -46,6 +46,7 @@ namespace NoteAppUI
             // 
             // OkButton
             // 
+            this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OkButton.Location = new System.Drawing.Point(272, 377);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
@@ -56,6 +57,7 @@ namespace NoteAppUI
             // 
             // CancelButton
             // 
+            this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.Location = new System.Drawing.Point(353, 377);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
@@ -66,6 +68,9 @@ namespace NoteAppUI
             // 
             // MainTextBox
             // 
+            this.MainTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MainTextBox.Location = new System.Drawing.Point(12, 91);
             this.MainTextBox.Multiline = true;
             this.MainTextBox.Name = "MainTextBox";
@@ -75,10 +80,13 @@ namespace NoteAppUI
             // 
             // TitleTextBox
             // 
+            this.TitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleTextBox.Location = new System.Drawing.Point(59, 12);
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(369, 20);
             this.TitleTextBox.TabIndex = 3;
+            this.TitleToolTip.SetToolTip(this.TitleTextBox, "Too many characters");
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // CreatedDateTimePicker
@@ -146,6 +154,7 @@ namespace NoteAppUI
             // 
             // TitleToolTip
             // 
+            this.TitleToolTip.Active = false;
             this.TitleToolTip.ShowAlways = true;
             // 
             // NoteForm
@@ -164,10 +173,10 @@ namespace NoteAppUI
             this.Controls.Add(this.MainTextBox);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OkButton);
+            this.MinimumSize = new System.Drawing.Size(458, 453);
             this.Name = "NoteForm";
             this.ShowIcon = false;
             this.Text = "EditForm";
-            this.Load += new System.EventHandler(this.NoteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

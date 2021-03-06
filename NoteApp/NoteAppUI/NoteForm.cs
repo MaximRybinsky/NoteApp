@@ -19,11 +19,11 @@ namespace NoteAppUI
         /// <summary>
         /// Поле для временного хранения переданных данных
         /// </summary>
-        private NoteApp.Note _note;
+        private Note _note;
         /// <summary>
         /// Передаются данные извне
         /// </summary>
-        public NoteApp.Note Note
+        public Note Note
         {
             get
             {
@@ -32,7 +32,7 @@ namespace NoteAppUI
             set
             {
                 _note = value;
-                UpdateNote();
+                RefreshNoteForm();
             }
         }
 
@@ -50,7 +50,7 @@ namespace NoteAppUI
         /// <summary>
         /// Задаёт значения при загрузке
         /// </summary>
-        private void UpdateNote()
+        private void RefreshNoteForm()
         {
             TitleTextBox.Text = _note.Title;
             CategoryComboBox.SelectedItem = _note.Category;
@@ -59,25 +59,21 @@ namespace NoteAppUI
             MainTextBox.Text = _note.Text;
         }
 
-        //
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 _note.Title = TitleTextBox.Text;
-                TitleTextBox.BackColor = Color.White;
-                OkButton.Enabled = true;
 
-                //Не уверен насчет реализации
+                TitleTextBox.BackColor = Color.White;
                 TitleToolTip.Active = false;
+                OkButton.Enabled = true;
             }
             catch
             {
                 TitleTextBox.BackColor = Color.LightSalmon;
+                TitleToolTip.Active = true;
                 OkButton.Enabled = false;
-
-                //Не работает почему-то
-                TitleToolTip.SetToolTip(TitleTextBox, "Too many characters");
             }
         }
 
@@ -101,11 +97,6 @@ namespace NoteAppUI
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
-        }
-
-        private void NoteForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

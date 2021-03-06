@@ -109,6 +109,7 @@ namespace NoteAppUI
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 276);
             this.label1.Name = "label1";
@@ -118,8 +119,7 @@ namespace NoteAppUI
             // 
             // AboutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(408, 298);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.GitHubLinkLabel);
@@ -129,6 +129,7 @@ namespace NoteAppUI
             this.Controls.Add(this.AuthorLabel);
             this.Controls.Add(this.VersionLable);
             this.Controls.Add(this.NoteAppLable);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AboutForm";
             this.ShowIcon = false;
             this.Text = "About";
