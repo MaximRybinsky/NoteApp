@@ -12,7 +12,7 @@ namespace NoteApp
         /// <summary>
         /// Путь по умолчанию
         /// </summary>
-        public static string defaultPath = Environment.GetFolderPath
+        public static string DefaultPath { get; private set; } = Environment.GetFolderPath
             (Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\NoteApp.notes";
 
         /// <summary>
