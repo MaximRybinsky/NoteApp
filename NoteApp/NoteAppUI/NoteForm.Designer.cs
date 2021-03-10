@@ -74,6 +74,7 @@ namespace NoteAppUI
             this.MainTextBox.Location = new System.Drawing.Point(12, 91);
             this.MainTextBox.Multiline = true;
             this.MainTextBox.Name = "MainTextBox";
+            this.MainTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.MainTextBox.Size = new System.Drawing.Size(416, 280);
             this.MainTextBox.TabIndex = 2;
             this.MainTextBox.TextChanged += new System.EventHandler(this.MainTextBox_TextChanged);
@@ -137,7 +138,7 @@ namespace NoteAppUI
             // ModifiedLabel
             // 
             this.ModifiedLabel.AutoSize = true;
-            this.ModifiedLabel.Location = new System.Drawing.Point(166, 71);
+            this.ModifiedLabel.Location = new System.Drawing.Point(166, 68);
             this.ModifiedLabel.Name = "ModifiedLabel";
             this.ModifiedLabel.Size = new System.Drawing.Size(50, 13);
             this.ModifiedLabel.TabIndex = 9;
@@ -146,7 +147,7 @@ namespace NoteAppUI
             // CreatedLlabel
             // 
             this.CreatedLlabel.AutoSize = true;
-            this.CreatedLlabel.Location = new System.Drawing.Point(9, 71);
+            this.CreatedLlabel.Location = new System.Drawing.Point(9, 68);
             this.CreatedLlabel.Name = "CreatedLlabel";
             this.CreatedLlabel.Size = new System.Drawing.Size(47, 13);
             this.CreatedLlabel.TabIndex = 10;

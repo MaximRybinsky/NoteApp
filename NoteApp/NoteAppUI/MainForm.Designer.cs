@@ -215,6 +215,7 @@ namespace NoteAppUI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NoteListBox.FormattingEnabled = true;
+            this.NoteListBox.IntegralHeight = false;
             this.NoteListBox.Location = new System.Drawing.Point(6, 27);
             this.NoteListBox.Name = "NoteListBox";
             this.NoteListBox.Size = new System.Drawing.Size(257, 355);
@@ -261,7 +262,7 @@ namespace NoteAppUI
             // ModifiedLabel
             // 
             this.ModifiedLabel.AutoSize = true;
-            this.ModifiedLabel.Location = new System.Drawing.Point(154, 68);
+            this.ModifiedLabel.Location = new System.Drawing.Point(154, 65);
             this.ModifiedLabel.Name = "ModifiedLabel";
             this.ModifiedLabel.Size = new System.Drawing.Size(50, 13);
             this.ModifiedLabel.TabIndex = 5;
@@ -270,7 +271,7 @@ namespace NoteAppUI
             // CreatedLabel
             // 
             this.CreatedLabel.AutoSize = true;
-            this.CreatedLabel.Location = new System.Drawing.Point(4, 68);
+            this.CreatedLabel.Location = new System.Drawing.Point(4, 65);
             this.CreatedLabel.Name = "CreatedLabel";
             this.CreatedLabel.Size = new System.Drawing.Size(47, 13);
             this.CreatedLabel.TabIndex = 4;
@@ -313,6 +314,7 @@ namespace NoteAppUI
             this.TextBox.Multiline = true;
             this.TextBox.Name = "TextBox";
             this.TextBox.ReadOnly = true;
+            this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBox.Size = new System.Drawing.Size(524, 335);
             this.TextBox.TabIndex = 0;
             // 

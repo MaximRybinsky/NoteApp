@@ -16,6 +16,7 @@ namespace NoteAppUI
         /// Поле для временного хранения переданных данных
         /// </summary>
         private Note _note;
+
         /// <summary>
         /// Передаются данные извне
         /// </summary>
