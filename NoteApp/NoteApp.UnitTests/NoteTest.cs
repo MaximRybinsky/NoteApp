@@ -14,46 +14,55 @@ namespace NoteApp.UnitTests
             _note = new Note();
         }
 
+
+
+
+        [Test(Description = "Позитивный тест сеттера Title")]
+        [Ignore("Тест идентичен тесту геттера")]
+        public void TestTitleSet_CorrectValue()
+        {
+            var expected = "Test title for note";
+            _note.Title = expected;
+            var actual = _note.Title;
+
+            Assert.AreEqual(actual, expected,
+                "Сеттер Title устанавливает неправильный текст");
+        }
+
         [Test(Description = "Позитивный тест геттера Title")]
         public void TestTitleGet_CorrectValue()
         {
-            //var actual;
-            //var expected;
+            var expected = "Test title for note";
+            _note.Title = expected;
+            var actual = _note.Title;
 
-            //Assert.AreEqual(actual, expected, 
-            //    "");
+            Assert.AreEqual(actual, expected,
+                "Геттер Title возвращает неправильный текст");
         }
 
-        [Test(Description = "Позитивный тест сеттера Title")]
-        public void TestTitleSet_CorrectValue()
-        {
-            //var actual;
-            //var expected;
-
-            //Assert.AreEqual(actual, expected, 
-            //    "");
-        }
-
-        [Test(Description = "Позитивный тест сеттера Title")]
-        // Изменить название
+        [Test(Description = "Присвоение слишком большого значения: " +
+            "больше 50 символов")]
         public void TestTitleSet_CorrectValue_Untitled()
         {
-            //var actual;
-            //var expected;
-
-            //Assert.AreEqual(actual, expected, 
-            //    "");
+            var wrongTitle = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
+            Assert.Throws<ArgumentException>(
+                () => { _note.Title = wrongTitle; },
+                    "Должно возникать исключение, если название длиннее 50 символов");
         }
 
-        [Test(Description = "Негативный тест геттера Title")]
-        public void TestTitleGet_UncorrectValue()
+        [Test(Description = "Присвоение пустой строки в качестве Title." +
+            "Должно быть заменено на Без названия")]
+        public void TestTitleSet_EmptyString()
         {
-            //var actual;
-            //var expected;
+            var setup = "";
+            var expected = "Без названия";
+            _note.Title = setup;
+            var actual = _note.Title;
 
-            //Assert.AreEqual(actual, expected, 
-            //    "");
+            Assert.AreEqual(actual, expected,
+                "Сеттер устанавливает неправильное название заметки");
         }
+
 
 
 
@@ -68,7 +77,7 @@ namespace NoteApp.UnitTests
             var actual = _note.Category;
 
             Assert.AreEqual(expected, actual,
-                "Сеттер Category возвращает неправильный объект");
+                "Сеттер Category устанавливает неправильный объект");
         }
 
         [Test(Description = "Позитивный тест геттера Category")]
@@ -95,7 +104,7 @@ namespace NoteApp.UnitTests
             var actual = _note.Text;
 
             Assert.AreEqual(expected, actual,
-                "Сеттер Text возвращает неправильный объект");
+                "Сеттер Text устанавливает неправильный объект");
         }
 
         [Test(Description = "Позитивный тест геттера Text")]
@@ -122,13 +131,14 @@ namespace NoteApp.UnitTests
             var actual = _note.Text;
 
             Assert.AreEqual(expected, actual,
-                "Сеттер Created возвращает неправильный объект");
+                "Сеттер Created устанавливает неправильный объект");
         }
 
         [Test(Description = "Позитивный тест геттера Created")]
+        [Ignore("Сеттер под модификатором доступа private")]
         public void TestCreatedtGet_CorrectValue()
         {
-            var expected = DateTime.Now;
+            var expected = DateTime.Today;
             var actual = _note.Created;
 
             Assert.AreEqual(expected, actual,
@@ -148,10 +158,11 @@ namespace NoteApp.UnitTests
             var actual = _note.Text;
 
             Assert.AreEqual(expected, actual,
-                "Сеттер Modified возвращает неправильный объект");
+                "Сеттер Modified устанавливает неправильный объект");
         }
 
         [Test(Description = "Позитивный тест геттера Modified")]
+        [Ignore("Сеттер под модификатором доступа private")]
         public void TestModifiedGet_CorrectValue()
         {
             var expected = DateTime.Now;

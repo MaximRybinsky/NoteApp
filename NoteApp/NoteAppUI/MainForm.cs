@@ -26,7 +26,7 @@ namespace NoteAppUI
             var categories = Enum.GetValues(typeof(NoteCategory)).Cast<object>().ToArray();
             CategoryComboBox.Items.AddRange(categories);
             
-            _project = ProjectManager.LoadFromFile(ProjectManager.defaultPath);
+            _project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
 
             //Загружает поля в список заметок на экране
             for (int i = 0; i < _project.Notes.Count; i++)
@@ -55,7 +55,7 @@ namespace NoteAppUI
                 NoteListBox.Items.Add(note.Title);
                 NoteListBox.SelectedIndex = NoteListBox.Items.Count - 1;
 
-                ProjectManager.SaveToFile(_project, ProjectManager.defaultPath);
+                ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             }
         }
 
@@ -85,7 +85,7 @@ namespace NoteAppUI
                     NoteListBox.Items.Insert(selected, note.Title);
                     NoteListBox.SelectedIndex = selected;
 
-                    ProjectManager.SaveToFile(_project, ProjectManager.defaultPath);
+                    ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace NoteAppUI
                     NoteListBox.Items.RemoveAt(selected);
                     NoteListBox.SelectedIndex = -1;
 
-                    ProjectManager.SaveToFile(_project, ProjectManager.defaultPath);
+                    ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 }
             }
         }
