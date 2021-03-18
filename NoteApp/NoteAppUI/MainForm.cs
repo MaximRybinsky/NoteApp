@@ -23,9 +23,11 @@ namespace NoteAppUI
         {
             InitializeComponent();
 
+            CategoryComboBox.Items.Add("All");
             var categories = Enum.GetValues(typeof(NoteCategory)).Cast<object>().ToArray();
             CategoryComboBox.Items.AddRange(categories);
-            
+            CategoryComboBox.SelectedItem = "All";
+
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
 
             //Загружает поля в список заметок на экране
@@ -37,6 +39,24 @@ namespace NoteAppUI
             {
                 NoteListBox.SelectedIndex = NoteListBox.TopIndex;
             }
+
+            //Выберает последнюю просматреваемую заметку, если таковая существует в списке
+            try
+            {
+                NoteListBox.SelectedIndex = _project.SelectedNoteIndex;
+            }
+            catch
+            {
+                NoteListBox.SelectedIndex = -1;
+            }
+        }
+
+        /// <summary>
+        /// Обновляет отображение заметок на главной форме
+        /// </summary>
+        public void RefreshMainForm()
+        {
+            ;
         }
 
         /// <summary>
@@ -109,10 +129,22 @@ namespace NoteAppUI
                 {
                     _project.Notes.RemoveAt(selected);
                     NoteListBox.Items.RemoveAt(selected);
-                    NoteListBox.SelectedIndex = -1;
+                    NoteListBox.SelectedIndex = 0;
 
                     ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 }
+            }
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CategoryComboBox.SelectedIndex == 0)
+            {
+                _project.SortNotes(_project.Notes);
+            }
+            else
+            {
+                _project.SortNotes(_project.Notes, (NoteCategory)CategoryComboBox.SelectedItem);
             }
         }
 
@@ -133,6 +165,14 @@ namespace NoteAppUI
         {
             var aboutForm = new AboutForm();
             aboutForm.Show();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString() == "Delete")
+            {
+                RemoveNote();
+            }
         }
 
         private void AddNoteButton_Click(object sender, EventArgs e)
@@ -168,6 +208,12 @@ namespace NoteAppUI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _project.SelectedNoteIndex = NoteListBox.SelectedIndex;
+            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
     }
 }
