@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace NoteApp
 {
     /// <summary>
-    /// Проект
+    /// Класс, хранящий список заметок
     /// </summary>
     public class Project
     {
@@ -20,32 +21,26 @@ namespace NoteApp
         /// <summary>
         /// Перегруженный метод, возвращающий список заметок отсортированный по дате изменения
         /// </summary>
-        public List<Note> SortNotes(List<Note> list)
+        public List<Note> SortNotes()
         {
-            list.Sort((x, y) => y.Modified.CompareTo(x.Modified));
-            return list;
+            //var categoryComparer = new CategoryComparer();
+            //Notes.Sort(categoryComparer);
+            return Notes;
         }
 
         /// <summary>
         /// Перегруженный метод, возвращающий список заметок конкретной категории
         /// </summary>
-        public List<Note> SortNotes(List<Note> list, NoteCategory category)
+        public List<Note> SortNotes(NoteCategory category)
         {
             var sorted = new List<Note>();
 
-            foreach
-
-
-            for (int i = 0; i < list.Count; i++)
+            foreach(Note note in Notes)
             {
-                if (list[i].Category == category)
-                {
-                    sorted.Add(list[i]);
-                }
+                sorted.Add(note);
             }
 
-
-            sorted = SortNotes(list);
+            sorted = SortNotes();
             return sorted;
         }
     }

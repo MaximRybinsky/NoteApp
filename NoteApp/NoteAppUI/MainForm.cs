@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,6 +18,11 @@ namespace NoteAppUI
         private Project _project = new Project();
 
         /// <summary>
+        /// Список отсортированных по категории заметок
+        /// </summary>
+        private List<Note> _sortedNotes = new List<Note>();
+
+        /// <summary>
         /// Начальный конструктор
         /// </summary>
         public MainForm()
@@ -30,17 +36,15 @@ namespace NoteAppUI
 
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
 
-            //Загружает поля в список заметок на экране
-            for (int i = 0; i < _project.Notes.Count; i++)
+            foreach (Note note in _project.Notes)
             {
-                NoteListBox.Items.Add(_project.Notes[i].Title);
+                NoteListBox.Items.Add(note.Title);
             }
-            if(NoteListBox.Items.Count > 0)
+            if (NoteListBox.Items.Count > 0)
             {
                 NoteListBox.SelectedIndex = NoteListBox.TopIndex;
             }
 
-            //Выберает последнюю просматреваемую заметку, если таковая существует в списке
             try
             {
                 NoteListBox.SelectedIndex = _project.SelectedNoteIndex;
@@ -49,6 +53,8 @@ namespace NoteAppUI
             {
                 NoteListBox.SelectedIndex = -1;
             }
+
+            //RefreshMainForm();
         }
 
         /// <summary>
@@ -56,7 +62,56 @@ namespace NoteAppUI
         /// </summary>
         public void RefreshMainForm()
         {
-            ;
+            //Сортировка
+
+            //if (CategoryComboBox.SelectedIndex == 0)
+            //{
+            //    //Сортировка по дате редактирования
+            //    _project.Notes = _project.SortNotes();
+            //    _sortedNotes = _project.Notes;
+            //}
+            //else
+            //{
+            //    //Сортировка по дате редактирования и по категории
+            //    _sortedNotes = _project.SortNotes((NoteCategory)CategoryComboBox.SelectedItem);
+            //}
+
+            //Обновить левую сторону
+
+            //Загружает поля в список заметок на экране
+            //NoteListBox.Items.Clear();
+            //foreach (Note note in _project.Notes)
+            //{
+            //    NoteListBox.Items.Add(note.Title);
+            //}
+            //if (NoteListBox.Items.Count > 0)
+            //{
+            //    NoteListBox.SelectedIndex = NoteListBox.TopIndex;
+            //}
+
+            //Выберает последнюю просматреваемую заметку, если таковая существует в списке
+            //try
+            //{
+            //    NoteListBox.SelectedIndex = _project.SelectedNoteIndex;
+            //}
+            //catch
+            //{
+            //    NoteListBox.SelectedIndex = -1;
+            //}
+
+            //Обновить правую сторону
+            //Код находится в обработчике 
+
+            //var selected = NoteListBox.SelectedIndex;
+            //if (selected == -1)
+            //{
+            //    return;
+            //}
+
+            //TextBox.Text = _project.Notes[selected].Text;
+            //NoteTitleLabel.Text = _project.Notes[selected].Title;
+            //NoteCategoryLabel.Text = _project.Notes[selected].Category.ToString();
+
         }
 
         /// <summary>
@@ -77,6 +132,7 @@ namespace NoteAppUI
 
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             }
+            RefreshMainForm();
         }
 
         /// <summary>
@@ -108,6 +164,7 @@ namespace NoteAppUI
                     ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 }
             }
+            RefreshMainForm();
         }
 
         /// <summary>
@@ -134,24 +191,26 @@ namespace NoteAppUI
                     ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 }
             }
+            RefreshMainForm();
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CategoryComboBox.SelectedIndex == 0)
-            {
-                _project.SortNotes(_project.Notes);
-            }
-            else
-            {
-                _project.SortNotes(_project.Notes, (NoteCategory)CategoryComboBox.SelectedItem);
-            }
+            //if (CategoryComboBox.SelectedIndex == 0)
+            //{
+            //    _project.SortNotes(_project.Notes);
+            //}
+            //else
+            //{
+            //    _project.SortNotes(_project.Notes, (NoteCategory)CategoryComboBox.SelectedItem);
+            //}
+            //RefreshMainForm();
         }
 
         private void NoteListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selected = NoteListBox.SelectedIndex;
-            if(selected == -1)
+            if (selected == -1)
             {
                 return;
             }
@@ -159,6 +218,7 @@ namespace NoteAppUI
             TextBox.Text = _project.Notes[selected].Text;
             NoteTitleLabel.Text = _project.Notes[selected].Title;
             NoteCategoryLabel.Text = _project.Notes[selected].Category.ToString();
+            //RefreshMainForm();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
