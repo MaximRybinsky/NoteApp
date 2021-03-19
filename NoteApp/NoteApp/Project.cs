@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System;
+using System.Linq;
 
 namespace NoteApp
 {
@@ -21,27 +21,20 @@ namespace NoteApp
         /// <summary>
         /// Перегруженный метод, возвращающий список заметок отсортированный по дате изменения
         /// </summary>
-        public List<Note> SortNotes()
+        public List<Note> SortNotes(List<Note> notes)
         {
-            //var categoryComparer = new CategoryComparer();
-            //Notes.Sort(categoryComparer);
-            return Notes;
+            var sortedNotes = notes.OrderBy(note => note.Modified).ToList();
+            return sortedNotes;
         }
 
         /// <summary>
         /// Перегруженный метод, возвращающий список заметок конкретной категории
         /// </summary>
-        public List<Note> SortNotes(NoteCategory category)
+        public List<Note> SortNotes(List<Note> notes, NoteCategory category)
         {
-            var sorted = new List<Note>();
-
-            foreach(Note note in Notes)
-            {
-                sorted.Add(note);
-            }
-
-            sorted = SortNotes();
-            return sorted;
+            var categoryNotes = notes.Where(note => note.Category == category).ToList();
+            var sortedNotes = categoryNotes.OrderBy(note => note.Modified).ToList();
+            return sortedNotes;
         }
     }
 }
