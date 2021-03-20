@@ -291,7 +291,7 @@ namespace NoteAppUI
             // ModifiedDateTimePicker
             // 
             this.ModifiedDateTimePicker.Enabled = false;
-            this.ModifiedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.ModifiedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ModifiedDateTimePicker.Location = new System.Drawing.Point(210, 62);
             this.ModifiedDateTimePicker.Name = "ModifiedDateTimePicker";
             this.ModifiedDateTimePicker.Size = new System.Drawing.Size(91, 20);

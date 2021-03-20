@@ -90,6 +90,8 @@ namespace NoteAppUI
             TextBox.Text = currentNote.Text;
             NoteTitleLabel.Text = currentNote.Title;
             NoteCategoryLabel.Text = currentNote.Category.ToString();
+            CreatedDateTimePicker.Value = currentNote.Created;
+            ModifiedDateTimePicker.Value = currentNote.Modified;
         }
 
         /// <summary>
