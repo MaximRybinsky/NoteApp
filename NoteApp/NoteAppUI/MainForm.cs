@@ -18,7 +18,8 @@ namespace NoteAppUI
         private Project _project = new Project();
 
         /// <summary>
-        /// Список отсортированных по категории заметок
+        /// Список отсортированных выводимых на экран заметок
+        /// Используется только при выводе на экран
         /// </summary>
         private List<Note> _viewedNotes = new List<Note>();
 
@@ -35,18 +36,12 @@ namespace NoteAppUI
             CategoryComboBox.SelectedItem = "All";
 
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
-
-            _viewedNotes = _project.Notes;
             RefreshListBox();
 
             //Выберает последнюю просматреваемую заметку, если таковая существует в списке
-            try
+            if (NoteListBox.Items.Count > 0)
             {
                 NoteListBox.SelectedIndex = _project.SelectedNoteIndex;
-            }
-            catch
-            {
-                NoteListBox.SelectedIndex = -1;
             }
         }
 
@@ -55,16 +50,46 @@ namespace NoteAppUI
         /// </summary>
         public void RefreshListBox()
         {
+            //Производит сортировку в соответствии с выбранной категорией
+            if (CategoryComboBox.SelectedItem == (object)"All")
+            {
+                _project.Notes = _project.SortNotes(_project.Notes);
+                _viewedNotes = _project.Notes;
+            }
+            else
+            {
+                _viewedNotes = _project.SortNotes(_project.Notes, (NoteCategory)CategoryComboBox.SelectedItem);
+            }
+
             //Загружает поля в список заметок на экране
             NoteListBox.Items.Clear();
             foreach (Note note in _viewedNotes)
             {
                 NoteListBox.Items.Add(note.Title);
             }
+
             if (NoteListBox.Items.Count > 0)
             {
-                NoteListBox.SelectedIndex = NoteListBox.TopIndex;
+                NoteListBox.SelectedIndex = 0;
             }
+        }
+
+        /// <summary>
+        /// Обновляет отображение правой панели главной формы
+        /// Выводит название, текст, категорию и даты выбранной заметки
+        /// </summary>
+        public void RefreshRightPanel()
+        {
+            var selected = NoteListBox.SelectedIndex;
+            if (selected == -1)
+            {
+                return;
+            }
+
+            var currentNote = _viewedNotes[selected];
+            TextBox.Text = currentNote.Text;
+            NoteTitleLabel.Text = currentNote.Title;
+            NoteCategoryLabel.Text = currentNote.Category.ToString();
         }
 
         /// <summary>
@@ -73,16 +98,16 @@ namespace NoteAppUI
         private void AddNote()
         {
             var note = new Note();
-            var editForm = new NoteForm();
-            editForm.Note = note;
-            editForm.ShowDialog();
-            if(editForm.DialogResult == DialogResult.OK)
+            var noteForm = new NoteForm();
+            noteForm.Note = note;
+            noteForm.ShowDialog();
+            if(noteForm.DialogResult == DialogResult.OK)
             {
-                note = editForm.Note;
-                _project.Notes.Add(note);
-                _viewedNotes.Add(note);
-                NoteListBox.Items.Add(note.Title);
-                NoteListBox.SelectedIndex = NoteListBox.Items.Count - 1;
+                note = noteForm.Note;
+
+                _project.Notes.Insert(0, note);
+                NoteListBox.Items.Insert(0, note.Title);
+                NoteListBox.SelectedIndex = 0;
 
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             }
@@ -108,13 +133,12 @@ namespace NoteAppUI
                 if (editForm.DialogResult == DialogResult.OK)
                 {
                     note = editForm.Note;
+
                     _project.Notes.RemoveAt(selected);
-                    _viewedNotes.RemoveAt(selected);
+                    _project.Notes.Insert(0, note);
                     NoteListBox.Items.RemoveAt(selected);
-                    _project.Notes.Insert(selected, note);
-                    _viewedNotes.Insert(selected, note);
-                    NoteListBox.Items.Insert(selected, note.Title);
-                    NoteListBox.SelectedIndex = selected;
+                    NoteListBox.Items.Insert(0, note.Title);
+                    NoteListBox.SelectedIndex = 0;
 
                     ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 }
@@ -139,9 +163,12 @@ namespace NoteAppUI
                 if (dialogResult == DialogResult.Yes)
                 {
                     _project.Notes.RemoveAt(selected);
-                    _viewedNotes.RemoveAt(selected);
                     NoteListBox.Items.RemoveAt(selected);
-                    NoteListBox.SelectedIndex = 0;
+
+                    if (NoteListBox.Items.Count > 0)
+                    {
+                        NoteListBox.SelectedIndex = 0;
+                    }
 
                     ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 }
@@ -150,38 +177,12 @@ namespace NoteAppUI
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //В зависимости от выбранной категории вызывает сортировку и вывод
-            if (CategoryComboBox.SelectedItem == (object)"All")
-            {
-                _project.Notes = _project.SortNotes(_project.Notes);
-                _viewedNotes = _project.Notes;
-            }
-            else
-            {
-                _viewedNotes = _project.SortNotes(_project.Notes, (NoteCategory)CategoryComboBox.SelectedItem);
-            }
             RefreshListBox();
         }
 
         private void NoteListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Обновление правой части формы
-            //Вывод текста, названия и др. выбранной заметки
-            var selected = NoteListBox.SelectedIndex;
-            if (selected == -1)
-            {
-                return;
-            }
-
-            _viewedNotes = _project.Notes;
-
-            TextBox.Text = _viewedNotes[selected].Text;
-            NoteTitleLabel.Text = _viewedNotes[selected].Title;
-            NoteCategoryLabel.Text = _viewedNotes[selected].Category.ToString();
-
-            //TextBox.Text = _project.Notes[selected].Text;
-            //NoteTitleLabel.Text = _project.Notes[selected].Title;
-            //NoteCategoryLabel.Text = _project.Notes[selected].Category.ToString();
+            RefreshRightPanel();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

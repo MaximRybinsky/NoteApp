@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace NoteApp
 {
@@ -96,6 +97,27 @@ namespace NoteApp
         /// Возвращает значение времени последнего изменения заметки
         /// </summary>
         public DateTime Modified { get; private set; } = DateTime.Now;
+
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
+        public Note()
+        {
+        }
+
+        /// <summary>
+        /// Конструктор для сериализации данных
+        /// </summary>
+        [JsonConstructor]
+        public Note(string title, string text, NoteCategory category,
+            DateTime created, DateTime modified)
+        {
+            Title = title;
+            Text = text;
+            Category = category;
+            Created = created;
+            Modified = modified;
+        }
 
         /// <summary>
         /// Реализация интерфейса IClonable

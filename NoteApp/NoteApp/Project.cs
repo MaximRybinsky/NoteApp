@@ -16,14 +16,14 @@ namespace NoteApp
         /// <summary>
         /// Возвращает и устанавливает индекс последней просматреваемой заметки
         /// </summary>
-        public int SelectedNoteIndex { get; set; }
+        public int SelectedNoteIndex { get; set; } = -1;
 
         /// <summary>
         /// Перегруженный метод, возвращающий список заметок отсортированный по дате изменения
         /// </summary>
         public List<Note> SortNotes(List<Note> notes)
         {
-            var sortedNotes = notes.OrderBy(note => note.Modified).ToList();
+            var sortedNotes = notes.OrderByDescending(note => note.Modified).ToList();
             return sortedNotes;
         }
 
@@ -33,7 +33,7 @@ namespace NoteApp
         public List<Note> SortNotes(List<Note> notes, NoteCategory category)
         {
             var categoryNotes = notes.Where(note => note.Category == category).ToList();
-            var sortedNotes = categoryNotes.OrderBy(note => note.Modified).ToList();
+            var sortedNotes = categoryNotes.OrderByDescending(note => note.Modified).ToList();
             return sortedNotes;
         }
     }
