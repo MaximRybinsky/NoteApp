@@ -10,14 +10,16 @@ namespace NoteApp
     public static class ProjectManager
     {
         /// <summary>
-        /// Путь по умолчанию
+        /// Возвращает или задает путь по умолчанию
         /// </summary>
         public static string DefaultPath { get; private set; } = Environment.GetFolderPath
-            (Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\NoteApp.notes";
+            (Environment.SpecialFolder.ApplicationData) + "\\Rybinsky\\NoteApp\\NoteApp.notes";
 
         /// <summary>
         /// Метод для сохранения данных
         /// </summary>
+        /// <param name="project"></param>
+        /// <param name="fileName"></param>
         public static void SaveToFile(Project project, string fileName)
         {
             //Если папка отсутствует - создать
@@ -38,6 +40,8 @@ namespace NoteApp
         /// <summary>
         /// Метод для загрузки данных
         /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns>Считанный проект, если повреждён - пустой проект</returns>
         public static Project LoadFromFile(string fileName)
         {
             Project readProject = new Project();

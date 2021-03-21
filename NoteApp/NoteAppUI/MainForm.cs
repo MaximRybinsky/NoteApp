@@ -18,13 +18,13 @@ namespace NoteAppUI
         private Project _project = new Project();
 
         /// <summary>
-        /// Список отсортированных выводимых на экран заметок
+        /// Список отсортированных выводимых на экран заметок.
         /// Используется только при выводе на экран
         /// </summary>
         private List<Note> _viewedNotes = new List<Note>();
 
         /// <summary>
-        /// Начальный конструктор
+        /// Создаёт экземпляр формы <see cref="MainForm">
         /// </summary>
         public MainForm()
         {
@@ -75,7 +75,7 @@ namespace NoteAppUI
         }
 
         /// <summary>
-        /// Обновляет отображение правой панели главной формы
+        /// Обновляет отображение правой панели главной формы.
         /// Выводит название, текст, категорию и даты выбранной заметки
         /// </summary>
         public void RefreshRightPanel()

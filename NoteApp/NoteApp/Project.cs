@@ -4,23 +4,25 @@ using System.Linq;
 namespace NoteApp
 {
     /// <summary>
-    /// Класс, хранящий список заметок
+    /// Хранит и сортирует список заметок
     /// </summary>
     public class Project
     {
         /// <summary>
-        /// Свойства списка заметок
+        /// Возвращает или задает список заметок
         /// </summary>
         public List<Note> Notes { get; set; } = new List<Note>();
 
         /// <summary>
-        /// Возвращает и устанавливает индекс последней просматреваемой заметки
+        /// Возвращает или задает индекс последней просматреваемой заметки
         /// </summary>
         public int SelectedNoteIndex { get; set; } = -1;
 
         /// <summary>
-        /// Перегруженный метод, возвращающий список заметок отсортированный по дате изменения
+        /// Сортирует список заметок по дате редактирования
         /// </summary>
+        /// <param name="notes"></param>
+        /// <returns>Отсортированный по дате редактирования список заметок</returns>
         public List<Note> SortNotes(List<Note> notes)
         {
             var sortedNotes = notes.OrderByDescending(note => note.Modified).ToList();
@@ -28,8 +30,13 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Перегруженный метод, возвращающий список заметок конкретной категории
+        /// Сортирует список заметок по дате редактирования, 
+        /// оставляя заметки конкретной категории
         /// </summary>
+        /// <param name="notes"></param>
+        /// <param name="category"></param>
+        /// <returns>Отсортированный по дате редактирования 
+        /// список заметок конкретной категории</returns>
         public List<Note> SortNotes(List<Note> notes, NoteCategory category)
         {
             var categoryNotes = notes.Where(note => note.Category == category).ToList();

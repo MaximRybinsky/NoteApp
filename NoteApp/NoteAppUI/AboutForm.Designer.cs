@@ -55,7 +55,7 @@ namespace NoteAppUI
             this.VersionLable.Location = new System.Drawing.Point(13, 33);
             this.VersionLable.Name = "VersionLable";
             this.VersionLable.Size = new System.Drawing.Size(40, 13);
-            this.VersionLable.TabIndex = 1;
+            this.VersionLable.TabIndex = 0;
             this.VersionLable.Text = "v 1.0.0";
             // 
             // AuthorLabel
@@ -64,7 +64,7 @@ namespace NoteAppUI
             this.AuthorLabel.Location = new System.Drawing.Point(13, 64);
             this.AuthorLabel.Name = "AuthorLabel";
             this.AuthorLabel.Size = new System.Drawing.Size(120, 13);
-            this.AuthorLabel.TabIndex = 2;
+            this.AuthorLabel.TabIndex = 0;
             this.AuthorLabel.Text = "Author: Maxim Rybinsky";
             // 
             // EmaleLabel
@@ -73,7 +73,7 @@ namespace NoteAppUI
             this.EmaleLabel.Location = new System.Drawing.Point(13, 107);
             this.EmaleLabel.Name = "EmaleLabel";
             this.EmaleLabel.Size = new System.Drawing.Size(107, 13);
-            this.EmaleLabel.TabIndex = 3;
+            this.EmaleLabel.TabIndex = 0;
             this.EmaleLabel.Text = "e-male for feedback: ";
             // 
             // GitHubLabel
@@ -82,7 +82,7 @@ namespace NoteAppUI
             this.GitHubLabel.Location = new System.Drawing.Point(13, 130);
             this.GitHubLabel.Name = "GitHubLabel";
             this.GitHubLabel.Size = new System.Drawing.Size(46, 13);
-            this.GitHubLabel.TabIndex = 4;
+            this.GitHubLabel.TabIndex = 0;
             this.GitHubLabel.Text = "GitHub: ";
             // 
             // EmaleLinkLabel
@@ -91,7 +91,7 @@ namespace NoteAppUI
             this.EmaleLinkLabel.Location = new System.Drawing.Point(126, 107);
             this.EmaleLinkLabel.Name = "EmaleLinkLabel";
             this.EmaleLinkLabel.Size = new System.Drawing.Size(95, 13);
-            this.EmaleLinkLabel.TabIndex = 5;
+            this.EmaleLinkLabel.TabIndex = 1;
             this.EmaleLinkLabel.TabStop = true;
             this.EmaleLinkLabel.Text = "maxim_2k@mail.ru";
             this.EmaleLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EmaleLinkLabel_LinkClicked);
@@ -102,7 +102,7 @@ namespace NoteAppUI
             this.GitHubLinkLabel.Location = new System.Drawing.Point(65, 130);
             this.GitHubLinkLabel.Name = "GitHubLinkLabel";
             this.GitHubLinkLabel.Size = new System.Drawing.Size(127, 13);
-            this.GitHubLinkLabel.TabIndex = 6;
+            this.GitHubLinkLabel.TabIndex = 2;
             this.GitHubLinkLabel.TabStop = true;
             this.GitHubLinkLabel.Text = "MaximRybinsky/NoteApp";
             this.GitHubLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GitHubLinkLabel_LinkClicked);
@@ -114,7 +114,7 @@ namespace NoteAppUI
             this.label1.Location = new System.Drawing.Point(13, 276);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 13);
-            this.label1.TabIndex = 7;
+            this.label1.TabIndex = 0;
             this.label1.Text = "2020 Maxim Rybinsky";
             // 
             // AboutForm

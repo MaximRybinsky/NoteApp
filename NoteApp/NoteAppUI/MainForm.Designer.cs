@@ -84,7 +84,7 @@ namespace NoteAppUI
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -165,7 +165,7 @@ namespace NoteAppUI
             this.splitContainer1.Panel2MinSize = 320;
             this.splitContainer1.Size = new System.Drawing.Size(800, 426);
             this.splitContainer1.SplitterDistance = 266;
-            this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.TabIndex = 0;
             // 
             // DeleteNoteButton
             // 
@@ -177,7 +177,7 @@ namespace NoteAppUI
             this.DeleteNoteButton.Location = new System.Drawing.Point(64, 394);
             this.DeleteNoteButton.Name = "DeleteNoteButton";
             this.DeleteNoteButton.Size = new System.Drawing.Size(20, 20);
-            this.DeleteNoteButton.TabIndex = 1;
+            this.DeleteNoteButton.TabIndex = 5;
             this.DeleteNoteButton.UseVisualStyleBackColor = true;
             this.DeleteNoteButton.Click += new System.EventHandler(this.DeleteNoteButton_Click);
             // 
@@ -191,7 +191,7 @@ namespace NoteAppUI
             this.AddNoteButton.Location = new System.Drawing.Point(12, 394);
             this.AddNoteButton.Name = "AddNoteButton";
             this.AddNoteButton.Size = new System.Drawing.Size(20, 20);
-            this.AddNoteButton.TabIndex = 0;
+            this.AddNoteButton.TabIndex = 3;
             this.AddNoteButton.UseVisualStyleBackColor = true;
             this.AddNoteButton.Click += new System.EventHandler(this.AddNoteButton_Click);
             // 
@@ -205,7 +205,7 @@ namespace NoteAppUI
             this.EditNoteButton.Location = new System.Drawing.Point(38, 394);
             this.EditNoteButton.Name = "EditNoteButton";
             this.EditNoteButton.Size = new System.Drawing.Size(20, 20);
-            this.EditNoteButton.TabIndex = 0;
+            this.EditNoteButton.TabIndex = 4;
             this.EditNoteButton.UseVisualStyleBackColor = true;
             this.EditNoteButton.Click += new System.EventHandler(this.EditNoteButton_Click);
             // 
@@ -219,7 +219,7 @@ namespace NoteAppUI
             this.NoteListBox.Location = new System.Drawing.Point(6, 27);
             this.NoteListBox.Name = "NoteListBox";
             this.NoteListBox.Size = new System.Drawing.Size(257, 355);
-            this.NoteListBox.TabIndex = 1;
+            this.NoteListBox.TabIndex = 2;
             this.NoteListBox.SelectedIndexChanged += new System.EventHandler(this.NoteListBox_SelectedIndexChanged);
             // 
             // ShowCategoryLabel
@@ -239,7 +239,7 @@ namespace NoteAppUI
             this.CategoryComboBox.Location = new System.Drawing.Point(90, 0);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(173, 21);
-            this.CategoryComboBox.TabIndex = 0;
+            this.CategoryComboBox.TabIndex = 1;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // CategoryLabel
@@ -317,7 +317,7 @@ namespace NoteAppUI
             this.TextBox.ReadOnly = true;
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBox.Size = new System.Drawing.Size(524, 335);
-            this.TextBox.TabIndex = 0;
+            this.TextBox.TabIndex = 6;
             // 
             // MainForm
             // 

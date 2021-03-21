@@ -18,7 +18,7 @@ namespace NoteAppUI
         private Note _note;
 
         /// <summary>
-        /// Передаются данные извне
+        /// Возвращает или задает данные извне
         /// </summary>
         public Note Note
         {
@@ -34,7 +34,7 @@ namespace NoteAppUI
         }
 
         /// <summary>
-        /// Начальный конструктор
+        /// Создаёт экземпляр формы <see cref="NoteForm">
         /// </summary>
         public NoteForm()
         {
@@ -45,7 +45,7 @@ namespace NoteAppUI
         }
 
         /// <summary>
-        /// Задаёт значения при загрузке
+        /// Выводит значения при загрузке данных
         /// </summary>
         private void RefreshNoteForm()
         {
@@ -64,13 +64,11 @@ namespace NoteAppUI
 
                 TitleTextBox.BackColor = Color.White;
                 TitleToolTip.Active = false;
-                OkButton.Enabled = true;
             }
             catch
             {
                 TitleTextBox.BackColor = Color.LightSalmon;
                 TitleToolTip.Active = true;
-                OkButton.Enabled = false;
             }
         }
 
@@ -86,8 +84,16 @@ namespace NoteAppUI
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            this.Close();
+            if(TitleTextBox.BackColor == Color.LightSalmon)
+            {
+                MessageBox.Show("Note name is too large: more than 50 characters", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
