@@ -21,7 +21,7 @@ namespace NoteApp
         /// <summary>
         /// Сортирует список заметок по дате редактирования
         /// </summary>
-        /// <param name="notes"></param>
+        /// <param name="notes">Список заметок</param>
         /// <returns>Отсортированный по дате редактирования список заметок</returns>
         public List<Note> SortNotes(List<Note> notes)
         {
@@ -33,8 +33,8 @@ namespace NoteApp
         /// Сортирует список заметок по дате редактирования, 
         /// оставляя заметки конкретной категории
         /// </summary>
-        /// <param name="notes"></param>
-        /// <param name="category"></param>
+        /// <param name="notes">Список заметок</param>
+        /// <param name="category">Категория заметок</param>
         /// <returns>Отсортированный по дате редактирования 
         /// список заметок конкретной категории</returns>
         public List<Note> SortNotes(List<Note> notes, NoteCategory category)

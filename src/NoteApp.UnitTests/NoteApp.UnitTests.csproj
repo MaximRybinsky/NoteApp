@@ -48,18 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NoteTest.cs" />
-    <Compile Include="ProjectManagerTest.cs" />
-    <Compile Include="ProjectTest.cs" />
+    <Compile Include="NoteTests.cs" />
+    <Compile Include="ProjectManagerTests.cs" />
+    <Compile Include="ProjectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NoteApp\NoteApp.csproj">
+    <ProjectReference Include="..\NoteApp\NoteApp.Model.csproj">
       <Project>{fadb5f65-5112-46cb-8d88-3263357a9595}</Project>
-      <Name>NoteApp</Name>
+      <Name>NoteApp.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

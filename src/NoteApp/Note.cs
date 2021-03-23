@@ -109,11 +109,11 @@ namespace NoteApp
         /// <summary>
         /// Создает экземпляр <see cref="Note"> для сериализации и десериализации
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="text"></param>
-        /// <param name="category"></param>
-        /// <param name="created"></param>
-        /// <param name="modified"></param>
+        /// <param name="title">Название заметки</param>
+        /// <param name="text">Текст заметки</param>
+        /// <param name="category">Категория заметки</param>
+        /// <param name="created">Время создания заметки</param>
+        /// <param name="modified">Время последнего редактирования заметки</param>
         [JsonConstructor]
         public Note(string title, string text, NoteCategory category,
             DateTime created, DateTime modified)
@@ -123,6 +123,18 @@ namespace NoteApp
             Category = category;
             Created = created;
             Modified = modified;
+        }
+
+        /// <summary>
+        /// Конструктор с пользовательскими значениями 
+        /// даты создания и последнего редактирования.
+        /// Только для проведения тестов!
+        /// </summary>
+        /// <param name="testTime">Время создания</param>
+        public Note(DateTime testTime)
+        {
+            Created = testTime;
+            Modified = testTime;
         }
 
         /// <summary>

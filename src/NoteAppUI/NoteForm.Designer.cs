@@ -50,7 +50,7 @@ namespace NoteAppUI
             this.OkButton.Location = new System.Drawing.Point(272, 377);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
-            this.OkButton.TabIndex = 4;
+            this.OkButton.TabIndex = 1;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
@@ -61,7 +61,7 @@ namespace NoteAppUI
             this.CancelButton.Location = new System.Drawing.Point(353, 377);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 5;
+            this.CancelButton.TabIndex = 2;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -76,7 +76,7 @@ namespace NoteAppUI
             this.MainTextBox.Name = "MainTextBox";
             this.MainTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.MainTextBox.Size = new System.Drawing.Size(416, 280);
-            this.MainTextBox.TabIndex = 3;
+            this.MainTextBox.TabIndex = 5;
             this.MainTextBox.TextChanged += new System.EventHandler(this.MainTextBox_TextChanged);
             // 
             // TitleTextBox
@@ -86,7 +86,7 @@ namespace NoteAppUI
             this.TitleTextBox.Location = new System.Drawing.Point(59, 12);
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(369, 20);
-            this.TitleTextBox.TabIndex = 1;
+            this.TitleTextBox.TabIndex = 3;
             this.TitleToolTip.SetToolTip(this.TitleTextBox, "Too many characters");
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
@@ -114,7 +114,7 @@ namespace NoteAppUI
             this.CategoryComboBox.Location = new System.Drawing.Point(59, 38);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(121, 21);
-            this.CategoryComboBox.TabIndex = 2;
+            this.CategoryComboBox.TabIndex = 4;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // TitleLabel
