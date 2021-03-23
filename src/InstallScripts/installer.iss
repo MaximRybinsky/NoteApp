@@ -34,8 +34,9 @@ Source: "Release\NoteAppUI.exe"; DestDir: "{app}"
 Source: "Release\*.dll"; DestDir: "{app}"
 Source: "..\NoteAppUI\Resources\icon.ico"; DestDir: "{app}"
 
-[Icons]
-Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+[Icons]                                             
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"; IconFilename: {app}\icon.ico
+Name: "{group}\uninslall"; Filename: "{uninstallexe}"; WorkingDir: "{app}"; IconFilename: {app}\icon.ico
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; IconFilename: {app}\icon.ico
 
 
