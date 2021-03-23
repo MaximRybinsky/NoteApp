@@ -53,36 +53,47 @@ namespace NoteApp.UnitTests
         }
 
         [Test(Description = "Позитивный тест геттера Notes")]
-        public void TestDefaultPath_CorrectValue()
+        public void DefaultPath_CorrectValue_ReturnsSameValue()
         {
+            //Setup - инициализация проекта вынесена в атрибут [SetUp]
             var expected = Environment.GetFolderPath
                (Environment.SpecialFolder.ApplicationData)
                + "\\Rybinsky\\NoteApp\\NoteApp.notes";
+
+            //Act
             var actual = ProjectManager.DefaultPath;
 
+            //Assert
             Assert.AreEqual(expected, actual,
                 "Геттер DefaultPath возвращает неправильный путь");
         }
 
         [Test(Description = "Позитивный тест сериализации")]
-        public void SaveToFile_CorrectValue()
+        public void SaveToFile_CorrectValue_ReturnsSameValue()
         {
-            ProjectManager.SaveToFile(_project, _saveFilePath);
-
-            var actual = File.ReadAllText(_saveFilePath);
+            //Setup - инициализация проекта вынесена в атрибут [SetUp]
             var expected = File.ReadAllText(_correctFilePath);
 
+            //Act
+            ProjectManager.SaveToFile(_project, _saveFilePath);
+            var actual = File.ReadAllText(_saveFilePath);
+
+            //Assert
             Assert.AreEqual(expected, actual,
                 "Метод SaveToFile возвращает неправильный проект");
         }
 
 
         [Test(Description = "Позитивный тест десериализации - папка существует")]
-        public void LoadFromFile_CorrectValue()
+        public void LoadFromFile_CorrectValue_ReturnsSameValue()
         {
-            var actual = ProjectManager.LoadFromFile(_correctFilePath);
+            //Setup - инициализация проекта вынесена в атрибут [SetUp]
             var expected = _project;
 
+            //Act
+            var actual = ProjectManager.LoadFromFile(_correctFilePath);
+
+            //Assert
             Assert.AreEqual(expected.SelectedNoteIndex, actual.SelectedNoteIndex, 
                 "Метод LoadFromFile возвращает неправильный проект");
             Assert.AreEqual(expected.Notes[0].Title, actual.Notes[0].Title,
@@ -98,11 +109,15 @@ namespace NoteApp.UnitTests
         }
 
         [Test(Description = "Негативный тест десериализации - папки не существует")]
-        public void LoadFromFile_UncorrectValue()
+        public void LoadFromFile_UncorrectPath_ReturnsNewProject()
         {
-            var actual = ProjectManager.LoadFromFile(_uncorrectFilePath);
+            //Setup - инициализация проекта вынесена в атрибут [SetUp]
             var expected = new Project();
 
+            //Act
+            var actual = ProjectManager.LoadFromFile(_uncorrectFilePath);
+
+            //Assert
             Assert.AreEqual(expected.Notes, actual.Notes,
                 "Метод LoadFromFile возвращает неправильный проект");
             Assert.AreEqual(expected.SelectedNoteIndex, actual.SelectedNoteIndex,
@@ -110,11 +125,15 @@ namespace NoteApp.UnitTests
         }
 
         [Test(Description = "Тест десериализации если файл повреждён")]
-        public void LoadFromDamagedFile_UncorrectValue()
+        public void LoadFromFile_DamagedFile_ReturnsNewProject()
         {
-            var actual = ProjectManager.LoadFromFile(_damagedFilePath);
+            //Setup - инициализация проекта вынесена в атрибут [SetUp]
             var expected = new Project();
 
+            //Act
+            var actual = ProjectManager.LoadFromFile(_damagedFilePath);
+
+            //Assert
             Assert.AreEqual(expected.Notes, actual.Notes,
                 "Метод LoadFromFile возвращает неправильный проект"); 
             Assert.AreEqual(expected.SelectedNoteIndex, actual.SelectedNoteIndex,
