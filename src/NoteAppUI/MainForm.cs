@@ -54,7 +54,7 @@ namespace NoteAppUI
             if (CategoryComboBox.SelectedItem == (object)"All")
             {
                 _project.Notes = _project.SortNotes(_project.Notes);
-                _viewedNotes = _project.Notes;
+                _viewedNotes = _project.Notes.ToList();
             }
             else
             {
@@ -83,15 +83,21 @@ namespace NoteAppUI
             var selected = NoteListBox.SelectedIndex;
             if (selected == -1)
             {
-                return;
+                TextBox.Text = "";
+                NoteTitleLabel.Text = "Title";
+                NoteCategoryLabel.Text = "none";
+                CreatedDateTimePicker.Value = DateTime.Now;
+                ModifiedDateTimePicker.Value = DateTime.Now;
             }
-
-            var currentNote = _viewedNotes[selected];
-            TextBox.Text = currentNote.Text;
-            NoteTitleLabel.Text = currentNote.Title;
-            NoteCategoryLabel.Text = currentNote.Category.ToString();
-            CreatedDateTimePicker.Value = currentNote.Created;
-            ModifiedDateTimePicker.Value = currentNote.Modified;
+            else
+            {
+                var currentNote = _viewedNotes[selected];
+                TextBox.Text = currentNote.Text;
+                NoteTitleLabel.Text = currentNote.Title;
+                NoteCategoryLabel.Text = currentNote.Category.ToString();
+                CreatedDateTimePicker.Value = currentNote.Created;
+                ModifiedDateTimePicker.Value = currentNote.Modified;
+            }
         }
 
         /// <summary>
@@ -107,8 +113,13 @@ namespace NoteAppUI
             {
                 note = noteForm.Note;
 
+                //Добавляет заметку в реальный список
                 _project.Notes.Insert(0, note);
+                //Добавляет заметку в ListBox
                 NoteListBox.Items.Insert(0, note.Title);
+                //Добавляет заметку в отображаемый список
+                _viewedNotes.Insert(0, note);
+
                 NoteListBox.SelectedIndex = 0;
 
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
@@ -128,7 +139,7 @@ namespace NoteAppUI
             }
             else
             {
-                var note = _project.Notes[selected];
+                var note = _viewedNotes[selected];
                 var editForm = new NoteForm();
                 editForm.Note = note;
                 editForm.ShowDialog(); 
@@ -136,10 +147,17 @@ namespace NoteAppUI
                 {
                     note = editForm.Note;
 
-                    _project.Notes.RemoveAt(selected);
+                    //Заменяет заметку в реальном списке
+                    var realIndex = _project.Notes.IndexOf(_viewedNotes[selected]);
+                    _project.Notes.RemoveAt(realIndex);
                     _project.Notes.Insert(0, note);
+                    //Заменяет заметку в отображаемом списке
+                    _viewedNotes.RemoveAt(selected);
+                    _viewedNotes.Insert(0, note);
+                    //Заменяет заметку в ListBox
                     NoteListBox.Items.RemoveAt(selected);
                     NoteListBox.Items.Insert(0, note.Title);
+
                     NoteListBox.SelectedIndex = 0;
 
                     ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
@@ -164,7 +182,12 @@ namespace NoteAppUI
                     ("Delete note?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _project.Notes.RemoveAt(selected);
+                    //Удаляет заметку в реальном списке
+                    var realIndex = _project.Notes.IndexOf(_viewedNotes[selected]);
+                    _project.Notes.RemoveAt(realIndex);
+                    //Удаляет заметку в отображаемом  списке
+                    _viewedNotes.RemoveAt(selected);
+                    //Удаляет заметку в ListBox
                     NoteListBox.Items.RemoveAt(selected);
 
                     if (NoteListBox.Items.Count > 0)
@@ -180,6 +203,7 @@ namespace NoteAppUI
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshListBox();
+            RefreshRightPanel();
         }
 
         private void NoteListBox_SelectedIndexChanged(object sender, EventArgs e)
